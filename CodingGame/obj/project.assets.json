@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\CodingGame\\CodingGame\\CodingGame.csproj",
+      "projectUniqueName": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
       "projectName": "CodingGame",
-      "projectPath": "C:\\Projects\\CodingGame\\CodingGame\\CodingGame.csproj",
+      "projectPath": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
       "packagesPath": "C:\\Users\\davin\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\CodingGame\\CodingGame\\obj\\",
+      "outputPath": "C:\\Projects\\Codingame\\CodingGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -67,7 +67,7 @@
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.0.2, 3.0.2]"
+            "version": "[3.0.1, 3.0.1]"
           }
         ],
         "frameworkReferences": {
@@ -75,7 +75,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200-preview-015002\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.1.20155.7\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -11,3 +11,16 @@ C:\Projects\CodingGame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.dll
 C:\Projects\CodingGame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.pdb
 C:\Projects\CodingGame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.csproj.CoreCompileInputs.cache
 C:\Projects\CodingGame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.genruntimeconfig.cache
+C:\Projects\Codingame\CodingGame\bin\Debug\netcoreapp3.0\CodingGame.exe
+C:\Projects\Codingame\CodingGame\bin\Debug\netcoreapp3.0\CodingGame.deps.json
+C:\Projects\Codingame\CodingGame\bin\Debug\netcoreapp3.0\CodingGame.runtimeconfig.json
+C:\Projects\Codingame\CodingGame\bin\Debug\netcoreapp3.0\CodingGame.runtimeconfig.dev.json
+C:\Projects\Codingame\CodingGame\bin\Debug\netcoreapp3.0\CodingGame.dll
+C:\Projects\Codingame\CodingGame\bin\Debug\netcoreapp3.0\CodingGame.pdb
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.csprojAssemblyReference.cache
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.AssemblyInfoInputs.cache
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.AssemblyInfo.cs
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.csproj.CoreCompileInputs.cache
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.dll
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.pdb
+C:\Projects\Codingame\CodingGame\obj\Debug\netcoreapp3.0\CodingGame.genruntimeconfig.cache

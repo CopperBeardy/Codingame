@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj": {}
+    "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\CodingGame.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj": {
+    "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\CodingGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
+        "projectUniqueName": "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\CodingGame.csproj",
         "projectName": "CodingGame",
-        "projectPath": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
-        "packagesPath": "C:\\Users\\davin\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Codingame\\CodingGame\\obj\\",
+        "projectPath": "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\CodingGame.csproj",
+        "packagesPath": "C:\\Users\\grove\\.nuget\\packages\\",
+        "outputPath": "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\davin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\grove\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -26,8 +26,8 @@
           "netcoreapp3.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://www.myget.org/F/orchardcore-preview/api/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
@@ -59,7 +59,15 @@
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.0.1, 3.0.1]"
+              "version": "[3.0.3, 3.0.3]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
             }
           ],
           "frameworkReferences": {
@@ -67,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.1.20155.7\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

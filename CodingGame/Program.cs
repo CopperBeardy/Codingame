@@ -16,140 +16,184 @@ class Solution
     // https://www.codingame.com/ide/puzzle/go-competition
     static void Main(string[] args)
     {
-        //TODO: loop through all lines here
-        Score totalScore = new Score{scoreW = 6.5, scoreB = 0};
 
-        string line = "....BBWW....";
-        Score lineScore = GetLineScore(line);
-        Console.WriteLine("W scored : " + lineScore.scoreW);
-        Console.WriteLine("B scored : " + lineScore.scoreB);
-        //Do the loopy thing
+        const double KOMI = 6.5;
+        Score totalScore = new Score { scoreW = KOMI, scoreB = 0 };
+        Score lineScore;
 
+        //---- Game One ----
+        lineScore = TestLine("....BBWW....", 6, 6);
 
-        // totalScore.scoreW += lineScore.scoreW;
-        // totalScore.scoreB += lineScore.scoreB;
+        totalScore.scoreW += lineScore.scoreW;
+        totalScore.scoreB += lineScore.scoreB;
+        //---- ---- ---- ----
+
+        //---- Game Two ---
+        lineScore = TestLine("BBBBBBWWWWWW", 6, 6);
+
+        totalScore.scoreW += lineScore.scoreW;
+        totalScore.scoreB += lineScore.scoreB;
+        //---- ---- ---- ----
+
         // // show the total scores
+        Console.WriteLine();
+        Console.WriteLine("Game complete");
+        Console.WriteLine("W = " + totalScore.scoreW);
+        Console.WriteLine("B = " + totalScore.scoreB);
 
+        // ---- Pause for input
+        Console.ReadLine();
     }
 
-    struct Section
+    public static Score TestLine(string lineCharsToTest, int expectedWScore, int expectedBScore)
+    {
+        //string line = "....BBWW....";
+        Score lineScore = GetLineScore(lineCharsToTest);
+        Console.WriteLine("W scored : " + lineScore.scoreW);
+        Console.WriteLine("B scored : " + lineScore.scoreB);
+        System.Diagnostics.Debug.Assert(lineScore.scoreW == expectedWScore);
+        System.Diagnostics.Debug.Assert(lineScore.scoreB == expectedBScore);
+        //bomb out if expected results aren't returned
+        return lineScore;
+    }
+
+    public struct Section
     {
         public int StartPos;
         public int EndPos;
-        public char PlayerLetter;
+        public string PlayerLetter;
     }
 
-    struct Score {
+    public struct Score
+    {
         public double scoreW;
         public double scoreB;
     }
 
-    public  Score GetLineScore(string LineCharacters)
+    public static Score GetLineScore(string LineCharacters)
     {
-        int startOfSection = -1;
-        string lastLetter = String.Empty;    
-        int endOfSection = -1;
-        Section section = new Section { StartPos = -1, EndPos = -1, PlayerLetter = 'X' };
+        string lastLetter= "X";
+        Section section = new Section { StartPos = -1, EndPos = -1, PlayerLetter = "X" };
 
         for (int i = 0; i < LineCharacters.Length; i++)
         {
-            if (LineCharacters[i] == '.')//Start the section at the start of the line
+
+            if (LineCharacters[i] == '.')
             {
                 int startCompare = i;
                 section.StartPos = i;
                 section.EndPos = FindEndOfSection(startCompare, LineCharacters);
+                if (section.StartPos == 0)
+                {
+                    section.PlayerLetter = LineCharacters[section.EndPos +1].ToString().ToLower();
+                }
+                else
+                {
+                    section.PlayerLetter = lastLetter.ToLower().ToCharArray()[0].ToString();
+                }
                 LineCharacters = FillSection(section, LineCharacters);
-                lastLetter = section.PlayerLetter;
-                //NO! not here, still need to compare the rest of the line 
+
+                //move to after the section
+                i = section.EndPos + 1;
                 //break;
             }
-            
-            //skip to the end of that section, and start comparing again.
-            lastLetter = section.PlayerLetter;
-            
-            i=section.EndPos +1;
-            //if the end of the section was the end of the line, then i should be greater than the end index of the FOR loop. 
-            //Do I need to exit FOR or, will the FOR loop take care of it automatically?
+            else
+            {
+                lastLetter = LineCharacters[i].ToString();
+            }
 
+            //if ((i == LineCharacters.Length) && (LineCharacters[i] == '.'))
+            //{
+            //    //end of line section
+            //    section.PlayerLetter = lastLetter;
+            //    section.EndPos = i;
+            //    LineCharacters = FillSection(section, LineCharacters);
+            //}
         }
+
 
         Score score = new Score { scoreW = 0, scoreB = 0 };
         for (int j = 0; j < LineCharacters.Length; j++)
         {
-            if (LineCharacters[j].ToString().ToLower() == "b") {
+            if (LineCharacters[j].ToString().ToLower() == "b")
+            {
                 score.scoreB += 1;
             }
-            else {//MUST be B or W after a line is transformed
+            else
+            {//MUST be B or W after a line is transformed
                 score.scoreW += 1;
             }
         }
-    }
-    
-    //WinningChar is the player that won that section
-    public string FillSection(Section section, string LineOfChars)
-    {
-        string transformedLine = LineOfChars;
 
-        for(int i = section.StartPos; i < section.EndPos; i++)
+        return score;
+    }
+
+    //WinningChar is the player that won that section
+    public static string FillSection(Section section, string LineOfChars)
+    {
+        char[] transformedLineChars = LineOfChars.ToCharArray();
+
+        for (int i = section.StartPos; i <= section.EndPos; i++)
         {
-            LineOfChars[i] = section.PlayerLetter.ToString().ToLower;
-            
+            transformedLineChars[i] = section.PlayerLetter.ToCharArray()[0];
+            Console.WriteLine("Character " + i.ToString() + " claimed for " + section.PlayerLetter);
+            //Console.WriteLine(transformedLineChars.ToString());
         }
 
-        return LineOfChars;
-        
+        string transformedLine = new string(transformedLineChars);
+        return transformedLine;
+
     }
-        //!fbombCount+2
-        public int FindEndOfSection(int startAt, string LineOfCharacters)
+
+    public static int FindEndOfSection(int startAt, string LineOfCharacters)
+    {
+        if (startAt <= LineOfCharacters.Length)
         {
-            if (startAt <= LineOfCharacters.Length)
+            for (int j = startAt + 1; j < LineOfCharacters.Length; j++)
             {
-                for (int j = startAt + 1; j < LineOfCharacters.Length; j++)
+                //if find anything other than a dot, then the section ends with a B or W.
+                if (LineOfCharacters[j] != '.')
                 {
-                    //if find anything other than a dot, then the section ends with a B or W.
-                    if (LineOfCharacters[j] != '.')
-                    {
-                        return j;
-                    }
+                    return j -1;
                 }
             }
-            return startAt;
         }
+        return LineOfCharacters.Length-1;
     }
-
-    // int L = int.Parse(Console.ReadLine());
-    // string[] lines = new string[L];
-    // double BlackScore = 0;
-    // double WhiteScore = 6.5;
-    // for(int i = 0; i < L; i++)
-    // {
-    //     lines[i] = Console.ReadLine();
-    // }
-
-    // for (int i = 0; i < lines.Length; i++)
-    // {
-    //     string lastLetter = "";
-    //     string line = lines[i];
-    //     int firstIndexOfB = line.IndexOf("B");
-    //     int firstIndexOfW = line.IndexOf("W");
-
-
-
-    // }
-
-
-
-    // Console.WriteLine($"BLACK : {BlackScore}");
-    // Console.WriteLine($"WHITE : {WhiteScore}");
-    // string winner = BlackScore > WhiteScore ? "BLACK" : "WHITE";
-    // Console.WriteLine($"{winner} WINS");
-    // Console.ReadLine();
-
-    //public static string Transform(string line)
-    //{
-
-    //}
-
-
-
 }
+
+// int L = int.Parse(Console.ReadLine());
+// string[] lines = new string[L];
+// double BlackScore = 0;
+// double WhiteScore = 6.5;
+// for(int i = 0; i < L; i++)
+// {
+//     lines[i] = Console.ReadLine();
+// }
+
+// for (int i = 0; i < lines.Length; i++)
+// {
+//     string lastLetter = "";
+//     string line = lines[i];
+//     int firstIndexOfB = line.IndexOf("B");
+//     int firstIndexOfW = line.IndexOf("W");
+
+
+
+// }
+
+
+
+// Console.WriteLine($"BLACK : {BlackScore}");
+// Console.WriteLine($"WHITE : {WhiteScore}");
+// string winner = BlackScore > WhiteScore ? "BLACK" : "WHITE";
+// Console.WriteLine($"{winner} WINS");
+// Console.ReadLine();
+
+//public static string Transform(string line)
+//{
+
+//}
+
+
+

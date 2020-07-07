@@ -8,25 +8,25 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\grove\\.nuget\\packages\\": {},
+    "C:\\Users\\davin\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\CodingGame.csproj",
+      "projectUniqueName": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
       "projectName": "CodingGame",
-      "projectPath": "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\CodingGame.csproj",
-      "packagesPath": "C:\\Users\\grove\\.nuget\\packages\\",
-      "outputPath": "C:\\My\\OneDrive\\Projects\\surlydev\\CopperBeardy\\Codingame\\CodingGame\\obj\\",
+      "projectPath": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
+      "packagesPath": "C:\\Users\\davin\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\Codingame\\CodingGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\grove\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\davin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -83,7 +83,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.6.20318.15\\RuntimeIdentifierGraph.json"
       }
     }
   }

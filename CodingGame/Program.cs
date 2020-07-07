@@ -4,8 +4,11 @@ using System.IO;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
+using System.Text.RegularExpressions;
 
 /**
  * Auto-generated code below aims at helping you parse
@@ -13,187 +16,94 @@ using System.Security.Cryptography.X509Certificates;
  **/
 class Solution
 {
-    // https://www.codingame.com/ide/puzzle/go-competition
     static void Main(string[] args)
     {
+        string expr = "(2>5)+2*(5>2)+4*(10>5)";
 
-        const double KOMI = 6.5;
-        Score totalScore = new Score { scoreW = KOMI, scoreB = 0 };
-        Score lineScore;
-
-        //---- Game One ----
-        lineScore = TestLine("....BBWW....", 6, 6);
-
-        totalScore.scoreW += lineScore.scoreW;
-        totalScore.scoreB += lineScore.scoreB;
-        //---- ---- ---- ----
-
-        //---- Game Two ---
-        lineScore = TestLine("BBBBBBWWWWWW", 6, 6);
-
-        totalScore.scoreW += lineScore.scoreW;
-        totalScore.scoreB += lineScore.scoreB;
-        //---- ---- ---- ----
-
-        // // show the total scores
-        Console.WriteLine();
-        Console.WriteLine("Game complete");
-        Console.WriteLine("W = " + totalScore.scoreW);
-        Console.WriteLine("B = " + totalScore.scoreB);
-
-        // ---- Pause for input
-        Console.ReadLine();
-    }
-
-    public static Score TestLine(string lineCharsToTest, int expectedWScore, int expectedBScore)
-    {
-        //string line = "....BBWW....";
-        Score lineScore = GetLineScore(lineCharsToTest);
-        Console.WriteLine("W scored : " + lineScore.scoreW);
-        Console.WriteLine("B scored : " + lineScore.scoreB);
-        System.Diagnostics.Debug.Assert(lineScore.scoreW == expectedWScore);
-        System.Diagnostics.Debug.Assert(lineScore.scoreB == expectedBScore);
-        //bomb out if expected results aren't returned
-        return lineScore;
-    }
-
-    public struct Section
-    {
-        public int StartPos;
-        public int EndPos;
-        public string PlayerLetter;
-    }
-
-    public struct Score
-    {
-        public double scoreW;
-        public double scoreB;
-    }
-
-    public static Score GetLineScore(string LineCharacters)
-    {
-        string lastLetter= "X";
-        Section section = new Section { StartPos = -1, EndPos = -1, PlayerLetter = "X" };
-
-        for (int i = 0; i < LineCharacters.Length; i++)
+        bool unsolved = true;
+        while (unsolved)
         {
 
-            if (LineCharacters[i] == '.')
+            expr = ExpressionParse(expr);
+            int.TryParse(expr, out int r);
+            if (r != 0) 
             {
-                int startCompare = i;
-                section.StartPos = i;
-                section.EndPos = FindEndOfSection(startCompare, LineCharacters);
-                if (section.StartPos == 0)
+                unsolved = false;
+            }
+
+          //todo work out all results
+          //to do work ouot probablities
+
+
+            
+        }
+        Console.WriteLine(expr);
+    }
+
+    public static string ExpressionParse(string exp)
+    {
+        string ReplacementExpression = "";
+        int result = 0;
+        if (exp.Contains('('))
+        {
+            //get sum with the paranthensis 
+            int openBracket = exp.LastIndexOf('(');
+            int endBracket = exp.LastIndexOf(')');
+            ReplacementExpression = exp.Substring(openBracket, endBracket - openBracket + 1);
+            Regex rx = new Regex(@"\d+[\+\-\*\>]\d+");
+            var value = rx.Match(ReplacementExpression).ToString();           
+            string temp = ExpressionParse(value);
+            result = int.Parse(temp);
+        }
+        else if (exp.Contains('*'))
+        {
+            Regex rx = new Regex(@"\d+[\*]\d+");
+            ReplacementExpression = rx.Match(exp).ToString();
+            result = Calculate(ReplacementExpression, '*');
+        }
+        else if (exp.Contains('+'))
+        {
+            Regex rx = new Regex(@"\d+[\+]\d+");
+            ReplacementExpression = rx.Match(exp).ToString();
+            result = Calculate(ReplacementExpression, '+');
+        }
+        else if (exp.Contains('-'))
+        {
+            Regex rx = new Regex(@"\d+[\-]\d+");
+            ReplacementExpression = rx.Match(exp).ToString();
+            result = Calculate(ReplacementExpression, '-');
+        }
+        else if (exp.Contains('>'))
+        {
+            Regex rx = new Regex(@"\d+[\>]\d+");
+            ReplacementExpression = rx.Match(exp).ToString();
+            result = Calculate(ReplacementExpression, '>');
+        }    
+
+       return exp.Replace(ReplacementExpression, result.ToString());
+    }
+
+    public static int Calculate(string exp, char oper)
+    {
+        var temp = exp.Split(oper);
+        switch (oper)
+        {
+            case '*': return int.Parse(temp[0]) * int.Parse(temp[1]);
+            case '+': return int.Parse(temp[0]) + int.Parse(temp[1]);
+            case '-': return int.Parse(temp[0]) - int.Parse(temp[1]);
+            default :
+                if (int.Parse(temp[0]) > int.Parse(temp[1]))
                 {
-                    section.PlayerLetter = LineCharacters[section.EndPos +1].ToString().ToLower();
+                    return 1;
                 }
                 else
                 {
-                    section.PlayerLetter = lastLetter.ToLower().ToCharArray()[0].ToString();
+                    return 0;
                 }
-                LineCharacters = FillSection(section, LineCharacters);
 
-                //move to after the section
-                i = section.EndPos + 1;
-                //break;
-            }
-            else
-            {
-                lastLetter = LineCharacters[i].ToString();
-            }
-
-            //if ((i == LineCharacters.Length) && (LineCharacters[i] == '.'))
-            //{
-            //    //end of line section
-            //    section.PlayerLetter = lastLetter;
-            //    section.EndPos = i;
-            //    LineCharacters = FillSection(section, LineCharacters);
-            //}
         }
-
-
-        Score score = new Score { scoreW = 0, scoreB = 0 };
-        for (int j = 0; j < LineCharacters.Length; j++)
-        {
-            if (LineCharacters[j].ToString().ToLower() == "b")
-            {
-                score.scoreB += 1;
-            }
-            else
-            {//MUST be B or W after a line is transformed
-                score.scoreW += 1;
-            }
-        }
-
-        return score;
     }
 
-    //WinningChar is the player that won that section
-    public static string FillSection(Section section, string LineOfChars)
-    {
-        char[] transformedLineChars = LineOfChars.ToCharArray();
+    
 
-        for (int i = section.StartPos; i <= section.EndPos; i++)
-        {
-            transformedLineChars[i] = section.PlayerLetter.ToCharArray()[0];
-            Console.WriteLine("Character " + i.ToString() + " claimed for " + section.PlayerLetter);
-            //Console.WriteLine(transformedLineChars.ToString());
-        }
-
-        string transformedLine = new string(transformedLineChars);
-        return transformedLine;
-
-    }
-
-    public static int FindEndOfSection(int startAt, string LineOfCharacters)
-    {
-        if (startAt <= LineOfCharacters.Length)
-        {
-            for (int j = startAt + 1; j < LineOfCharacters.Length; j++)
-            {
-                //if find anything other than a dot, then the section ends with a B or W.
-                if (LineOfCharacters[j] != '.')
-                {
-                    return j -1;
-                }
-            }
-        }
-        return LineOfCharacters.Length-1;
-    }
 }
-
-// int L = int.Parse(Console.ReadLine());
-// string[] lines = new string[L];
-// double BlackScore = 0;
-// double WhiteScore = 6.5;
-// for(int i = 0; i < L; i++)
-// {
-//     lines[i] = Console.ReadLine();
-// }
-
-// for (int i = 0; i < lines.Length; i++)
-// {
-//     string lastLetter = "";
-//     string line = lines[i];
-//     int firstIndexOfB = line.IndexOf("B");
-//     int firstIndexOfW = line.IndexOf("W");
-
-
-
-// }
-
-
-
-// Console.WriteLine($"BLACK : {BlackScore}");
-// Console.WriteLine($"WHITE : {WhiteScore}");
-// string winner = BlackScore > WhiteScore ? "BLACK" : "WHITE";
-// Console.WriteLine($"{winner} WINS");
-// Console.ReadLine();
-
-//public static string Transform(string line)
-//{
-
-//}
-
-
-

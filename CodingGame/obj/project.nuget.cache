@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s7ToOOvYLP1Q0nPP21qIm0AlZ43WVloKc5znmkVDao/L8OCXYX64O3cYU/qZzBGPmfSobSJrJXeueITJMxQ02Q==",
+  "dgSpecHash": "eoibUNviK8KMx6RKxJTr8xiA+TV/kV2S0moy80DqWJIJ7z5zF0s1hux/fh/Akl1RcWMadJrEV30lcutlQd9kUA==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\davin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.0.1\\microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512",
-    "C:\\Users\\davin\\.nuget\\packages\\microsoft.netcore.app.ref\\3.0.0\\microsoft.netcore.app.ref.3.0.0.nupkg.sha512",
-    "C:\\Users\\davin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.0.3\\microsoft.netcore.app.host.win-x64.3.0.3.nupkg.sha512",
-    "C:\\Users\\davin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.0.0\\microsoft.windowsdesktop.app.ref.3.0.0.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\Projects\\Codingame\\CodingGame\\CodingGame.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

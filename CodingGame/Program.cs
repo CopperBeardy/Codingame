@@ -1,3 +1,1 @@
-
-
-Scrabble.Solve();
+GhostLegs.Solve();

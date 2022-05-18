@@ -1,1 +1,3 @@
-GhostLegs.Solve();
+
+//Class1.Solve();
+EncryptionDecryptionOfEnigmaMachine.Solve();

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace CodingGame.Solutions.Solved;
 
 public static  class RectanglePartitions
 {
